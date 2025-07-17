@@ -1,41 +1,40 @@
- % Step 1: Load Dataset (assume CSV with two columns: Feature, Target)
- data = readmatrix('swedish_insurance.csv');   
-%data = readmatrix('swedishinsurance2.xls') ;
- X = data(:, 1);   % Feature column
- y = data(:, 2);   % Target/output column
- m = length(y);    
-% Number of training examples
- % Step 2: Add intercept term
- X_b = [ones(m, 1), X];   % Augmented feature matrix
- % Step 3: Compute theta using Normal Equation
- theta = inv(X_b' * X_b) * X_b' * y;
- fprintf('Learned parameters:\n');
- disp(theta);
- fprintf('Estimated Slope: %.4f\n', theta(2));
- fprintf('Estimated Intercept: %.4f\n', theta(1));
- % Step 4: Predict values
- y_pred = X_b * theta;
- % Step 5: Plot origial data and regression line
- % Blue circles (`bo`) for original data
- % Red line (`r-`) for the fitted regression line
- figure;
- plot(X, y, 'bo', 'MarkerSize', 7);      
-% Original data
- hold on;
- plot(X, y_pred, 'r-', 'LineWidth', 2);  % Regression line
- % Plot prediction at x = 10
- X_new = [1, 10];
- Y_new_pred = X_new * theta;
- plot(X_new, Y_new_pred, 'gs', 'MarkerSize', 12);
- xlabel('Feature');
- ylabel('Target');
- title('Linear Regression Fit');
- legend('Training data', 'Linear regression');
- grid on;
- Y_new_pred = X_new * theta;
- plot(X_new, Y_new_pred, 'gs', 'MarkerSize', 12);
- xlabel('Feature');
- ylabel('Target');
- title('Linear Regression Fit');
- legend('Training data', 'Linear regression');
- grid on;
+data = readmatrix('swedish_insurance.xlsx'); 
+X = data(:,1); 
+y = data(:,2); 
+m = length(y); 
+X = (X-mean(X))/std(X); 
+X_b = [ones(m,1),X]; 
+theta = zeros(2,1); 
+alpha = 0.01; 
+n = 1000; 
+history = zeros(n,1); 
+for i = 1:n 
+prediction = X_b*theta; 
+errors = prediction - y; 
+gradient = (1/m)*(X_b'*errors); 
+theta = theta - alpha*gradient; 
+history(i) = (1/(2*m))*sum(errors.^2); 
+end 
+fprintf('Slope: %.4f',theta(2)); 
+fprintf('Intercept: %.4f',theta(1)); 
+figure; 
+plot(1:n,history,'b-','LineWidth',2); 
+xlabel('Iteration'); 
+ylabel('Cost'); 
+title('Convergence of gradient descent'); 
+grid on; 
+x = 6; 
+x_new = (x - mean(data(:,1)))/std(data(:,1)); 
+x_new = [1,x_new]; 
+y_new_pred = x_new*theta; 
+fprintf('X = %.2f then Y = %.2f',x,y_new_pred); 
+figure; 
+plot(X,y,'bo','MarkerSize',7); 
+hold on; 
+plot(X,X_b*theta,'r-','LineWidth',3); 
+plot(x_new(2),y_new_pred,'gs','MarkerSize',7,'MarkerFaceColor','g'); 
+xlabel('Features'); 
+ylabel('Targets'); 
+title('Linear Regression using Gradient Descent'); 
+legend('Training Data','Regression Line','Test Data'); 
+grid on;
