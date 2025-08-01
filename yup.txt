@@ -1,0 +1,51 @@
+Here’s a *10-mark write-up* for your Salesforce-based Inventory Management System project. It includes *objectives, **methodology, and **expected outcomes*, written in a concise and exam-appropriate format:
+
+---
+
+### *Title:* Inventory Management System using Salesforce
+
+---
+
+### *Objectives:*
+
+* To develop a cloud-based Inventory Management System using Salesforce.
+* To streamline inventory tracking, supplier management, and product movement using custom objects.
+* To enable real-time data visualization and automation through dashboards and flows.
+
+---
+
+### *Methodology:*
+
+1. *Custom Objects Creation:*
+
+   * *Supplier*: Stores supplier information such as name, contact, and address.
+   * *CustomProduct*: Maintains details of products like product ID, name, type, and quantity.
+   * *InventoryTransaction*: Tracks incoming and outgoing stock transactions.
+   * *Receipts*: Logs receipt of goods and verifies delivery against supplier entries.
+
+2. *Automation using Flows:*
+
+   * Flows were used to automate the creation of transactions upon product updates.
+   * Validation rules ensured data consistency (e.g., preventing negative stock levels).
+
+3. *Interactive Dashboard:*
+
+   * Real-time dashboards were created for inventory levels, supplier performance, and transaction history.
+   * Reports enabled visual tracking of stock trends, shortages, and excesses.
+
+4. *User Access Control:*
+
+   * Profiles and permission sets were configured to restrict access based on roles (e.g., Inventory Manager, Supplier Contact).
+
+---
+
+### *Expected Outcomes:*
+
+* A centralized system for managing inventory and suppliers.
+* Improved accuracy and traceability of stock transactions.
+* Time-saving through automation of repetitive inventory tasks.
+* Real-time insights for decision-making through dynamic dashboards and reports.
+
+---
+
+Let me know if you want a *shorter 5-mark version*, or if you want to include screenshots or project flow for a viva presentation.
